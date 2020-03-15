@@ -33,7 +33,7 @@ The next step would be to import our existing Elastic IP to attach to this machi
 (The allocation of the IP can happen via the `aws` cli tool or via the AWS Console and is outside the scope of this guide)
 
 ```
-terraform import aws_eip.eip_ganache 52.44.35.215
+terraform import -var aws_profile=staging -var region=eu-east-2 aws_eip.eip_ganache 52.44.35.215
 ```
 
 Next up is peforming either a `plan` or an `apply` commands whether depending on your plan of action. To simply go ahead and create the machine in AWS simply issue an apply like so:
