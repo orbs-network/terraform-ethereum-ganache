@@ -50,3 +50,12 @@ resource "aws_instance" "ethereum" {
     Name = "${var.application}"
   }
 }
+
+resource "aws_eip" "eip_ganache" {
+  vpc = true
+}
+
+resource "aws_eip_association" "eip_assoc_ganache" {
+  instance_id   = "${aws_instance.ethereum[0].id}"
+  allocation_id = "${aws_eip.eip_ganache.id}"
+}

@@ -29,6 +29,12 @@ terraform init
 ```
 
 Terraform will initialize the repository, downloading any plugins used as well (in our case mostly the AWS plugin)
+The next step would be to import our existing Elastic IP to attach to this machine
+(The allocation of the IP can happen via the `aws` cli tool or via the AWS Console and is outside the scope of this guide)
+
+```
+terraform import aws_eip.eip_ganache 52.44.35.215
+```
 
 Next up is peforming either a `plan` or an `apply` commands whether depending on your plan of action. To simply go ahead and create the machine in AWS simply issue an apply like so:
 
@@ -39,5 +45,17 @@ terraform apply -var aws_profile=staging -var region=eu-east-2 -auto-approve
 (The variables are of course an example just to showcase how you can change the default variables inline while running the `apply` command)
 
 Once done, Terraform will output the DNS and IP of the machine which was created. Ganache should answer on *TCP* port *8545* after a couple of minutes.
+
+When you want to destroy the Ganache machine and it's related assets, type the following to detach the Elastic IP from the Terraform workspace:
+
+```
+terraform state rm aws_eip.eip_ganache
+```
+
+Next up you can go ahead and type the following to destroy the machine and it's related resources:
+
+```
+terraform destroy -var aws_profile=staging -var region=eu-east-2 -auto-approve
+```
 
 Enjoy
