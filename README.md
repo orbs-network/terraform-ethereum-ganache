@@ -16,6 +16,8 @@ Basically all of these variables have their appropriate defaults based on the be
 
 ## How to run this project
 
+### Deploy
+
 Firstly clone this project into your local machine by typing the following into your terminal:
 
 ```
@@ -44,7 +46,17 @@ terraform apply -var aws_profile=staging -var region=eu-west-1 -auto-approve
 
 (The variables are of course an example just to showcase how you can change the default variables inline while running the `apply` command)
 
+### Test
+
 Once done, Terraform will output the DNS and IP of the machine which was created. Ganache should answer on *TCP* port *8545* after a couple of minutes.
+
+Use Ethereum [JSON RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getblockbynumber) to communicate with the node, this CURL command for example will get the latest block:
+
+```
+curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["latest", false],"id":1}' 52.44.35.215:8545
+```
+
+### Destroy
 
 When you want to destroy the Ganache machine and it's related assets, type the following to detach the Elastic IP from the Terraform workspace:
 
