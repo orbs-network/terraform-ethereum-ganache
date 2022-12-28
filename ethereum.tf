@@ -36,7 +36,7 @@ resource "aws_instance" "ethereum" {
 
   root_block_device {
     volume_type = "gp2"
-    volume_size = 10
+    volume_size = 100
   }
 
   security_groups = ["${aws_security_group.ethereum.id}"]
