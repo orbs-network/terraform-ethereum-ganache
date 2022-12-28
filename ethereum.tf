@@ -24,7 +24,7 @@ add-apt-repository \
 apt-get update
 apt-get install -y docker-ce
 
-docker run -d --name ganache -p "8545:8545" trufflesuite/ganache-cli -a 1000 --gasLimit 0x7FFFFFFF --gasPrice 1 -m 'vanish junk genuine web seminar cook absurd royal ability series taste method identify elevator liquid' -i 5777 -p 8545
+docker run -d --name ganache -p "8545:8545" trufflesuite/ganache-cli -a 1000 -b 5 --gasLimit 0x7FFFFFFF --gasPrice 1 -m 'vanish junk genuine web seminar cook absurd royal ability series taste method identify elevator liquid' -i 5777 -p 8545
 
 TFEOF
 }
